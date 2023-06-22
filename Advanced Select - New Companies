@@ -1,0 +1,14 @@
+select distinct(company.company_code), 
+Founder,
+count(distinct(lead_manager.lead_manager_code)), 
+count(distinct(senior_manager.senior_manager_code)), 
+count(distinct(manager.manager_code)), 
+count(distinct(employee.employee_code))
+from company INNER JOIN Lead_manager ON company.company_code=lead_manager.company_code 
+INNER JOIN 
+senior_manager ON company.company_code=senior_manager.company_code 
+INNER JOIN 
+manager ON company.company_code=manager.company_code 
+INNER JOIN 
+employee ON company.company_code=employee.company_code 
+group by 2,1 order by company_code;
